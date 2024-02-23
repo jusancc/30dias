@@ -32,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.a30dias.data.Suggestion
 import com.example.a30dias.ui.theme._30DiasTheme
 
 class MainActivity : ComponentActivity() {
@@ -51,10 +52,43 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun App() {
+    val suggestions = listOf(
+        Suggestion(stringResource(id = R.string.suggestion1), R.drawable.ic_launcher_foreground),
+        Suggestion(stringResource(id = R.string.suggestion2), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion3), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion4), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion5), R.drawable.ic_launcher_foreground),
+        Suggestion(stringResource(id = R.string.suggestion6), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion7), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion8), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion9), R.drawable.ic_launcher_foreground),
+        Suggestion(stringResource(id = R.string.suggestion10), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion11), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion12), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion13), R.drawable.ic_launcher_foreground),
+        Suggestion(stringResource(id = R.string.suggestion14), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion15), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion16), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion17), R.drawable.ic_launcher_foreground),
+        Suggestion(stringResource(id = R.string.suggestion18), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion19), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion20), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion21), R.drawable.ic_launcher_foreground),
+        Suggestion(stringResource(id = R.string.suggestion22), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion23), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion24), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion25), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion26), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion27), R.drawable.ic_launcher_foreground),
+        Suggestion(stringResource(id = R.string.suggestion28), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion29), R.drawable.ic_launcher_background),
+        Suggestion(stringResource(id = R.string.suggestion30), R.drawable.ic_launcher_background),
+    )
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -62,20 +96,12 @@ fun App() {
             )
         }
     ) {
-        SuggestionList()
+        SuggestionList(suggestions = suggestions)
     }
 }
 
 @Composable
-fun SuggestionList() {
-    // Lista de sugerencias (aquí deberías tener tu propia lógica para cargar las sugerencias)
-    val suggestions = listOf(
-        "Sugerencia 1",
-        "Sugerencia 2",
-        "Sugerencia 3",
-        // Agrega más sugerencias según sea necesario
-    )
-
+fun SuggestionList(suggestions: List<Suggestion>) {
     LazyColumn {
         items(suggestions) { suggestion ->
             SuggestionItem(suggestion = suggestion)
@@ -84,7 +110,7 @@ fun SuggestionList() {
 }
 
 @Composable
-fun SuggestionItem(suggestion: String) {
+fun SuggestionItem(suggestion: Suggestion) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -97,13 +123,13 @@ fun SuggestionItem(suggestion: String) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                painter = painterResource(id = suggestion.imageResource),
                 contentDescription = null,
                 modifier = Modifier.size(200.dp)
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = suggestion,
+                text = suggestion.text,
                 fontSize = 20.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
