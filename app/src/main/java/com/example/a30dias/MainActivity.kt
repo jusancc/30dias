@@ -134,6 +134,8 @@ fun SuggestionItem(suggestion: Suggestion) {
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
+            Text(text = "prueba",
+                fontSize = 15.sp)
         }
     }
 }
